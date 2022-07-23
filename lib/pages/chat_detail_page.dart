@@ -10,6 +10,10 @@ class ChatDetailPage extends StatefulWidget {
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
+
+
+  final TextEditingController _chatController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +128,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: _chatController,
                       decoration: InputDecoration(
                         hintText: "Type message",
                         hintStyle: TextStyle(
@@ -178,16 +183,20 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   GestureDetector(
                     onTap: () {
                       ChatMessageModel chat = ChatMessageModel(
-                        messageContent: "Prueba 33333",
+                        messageContent: _chatController.text,
                         messageType: "me",
                       );
 
-                      chatsMessageList.add(ChatMessageModel(
-                        messageContent: "Prueba directa",
-                        messageType: "other",
-                      ));
+                      chatsMessageList.add(chat);
+
+                      _chatController.clear();
+                      // chatsMessageList.add(ChatMessageModel(
+                      //   messageContent: "Prueba directa",
+                      //   messageType: "other",
+                      // ));
 
                       setState(() {});
+
                     },
                     child: Container(
                       padding: const EdgeInsets.all(15.0),
