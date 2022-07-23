@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_whatsapp_clone/data/data_dummy.dart';
+import 'package:flutter_codigo_whatsapp_clone/models/chat_message_model.dart';
 
-class ChatDetailPage extends StatelessWidget {
+class ChatDetailPage extends StatefulWidget {
   const ChatDetailPage({Key? key}) : super(key: key);
 
+  @override
+  State<ChatDetailPage> createState() => _ChatDetailPageState();
+}
+
+class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +17,7 @@ class ChatDetailPage extends StatelessWidget {
         leadingWidth: 22,
         title: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.white10,
               backgroundImage: NetworkImage(
                 "https://images.pexels.com/photos/12365122/pexels-photo-12365122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -67,7 +73,9 @@ class ChatDetailPage extends StatelessWidget {
             itemCount: chatsMessageList.length,
             itemBuilder: (BuildContext context, int index) {
               return Align(
-                alignment: chatsMessageList[index].messageType == "me" ? Alignment.topRight : Alignment.topLeft,
+                alignment: chatsMessageList[index].messageType == "me"
+                    ? Alignment.topRight
+                    : Alignment.topLeft,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10.0,
@@ -76,12 +84,18 @@ class ChatDetailPage extends StatelessWidget {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6.0),
                   decoration: BoxDecoration(
-                    color: chatsMessageList[index].messageType == "me" ? Color(0xffE3FFC4) : Colors.white,
+                    color: chatsMessageList[index].messageType == "me"
+                        ? Color(0xffE3FFC4)
+                        : Colors.white,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(14.0),
                       bottomRight: Radius.circular(14.0),
-                      topRight: chatsMessageList[index].messageType == "me" ? Radius.circular(0) : Radius.circular(14.0),
-                      topLeft: chatsMessageList[index].messageType == "me" ? Radius.circular(14.0) : Radius.circular(0.0),
+                      topRight: chatsMessageList[index].messageType == "me"
+                          ? Radius.circular(0)
+                          : Radius.circular(14.0),
+                      topLeft: chatsMessageList[index].messageType == "me"
+                          ? Radius.circular(14.0)
+                          : Radius.circular(0.0),
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -163,7 +177,17 @@ class ChatDetailPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print("Hola");
+                      ChatMessageModel chat = ChatMessageModel(
+                        messageContent: "Prueba 33333",
+                        messageType: "me",
+                      );
+
+                      chatsMessageList.add(ChatMessageModel(
+                        messageContent: "Prueba directa",
+                        messageType: "other",
+                      ));
+
+                      setState(() {});
                     },
                     child: Container(
                       padding: const EdgeInsets.all(15.0),
