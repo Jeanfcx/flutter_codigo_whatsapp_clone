@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_whatsapp_clone/pages/call_page.dart';
 import 'package:flutter_codigo_whatsapp_clone/pages/chat_page.dart';
+import 'package:flutter_codigo_whatsapp_clone/pages/status_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage>
         children: [
           Center(child: Text("Camera")),
           ChatPage(),
-          Center(child: Text("Status")),
+          StatusPage(),
           CallPage()
         ],
       ),
